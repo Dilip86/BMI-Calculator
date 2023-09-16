@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function calculateClick() {
+            var Age = parseInt(document.getElementById("txtAge").value);
+            var Height = parseFloat(document.getElementById("txtHeight").value);
+            var Weight = parseFloat(document.getElementById("txtWeight").value);
+            var Gender = document.querySelector('input[name="gender"]:checked').value;
+
+
+            let HeightMeter = Height / 100;
+            let bmi = Weight / (HeightMeter ** 2);
+
+
+            let bmiResult;
+            if (Gender === "male") {
+                if (Age >= 20 && Age <= 80) {
+                    if (bmi < 18.5) {
+                        bmiResult = "( <font color='#d6d91e'>Underweight</font> )";
+                    } else if (bmi >= 18.5 && bmi < 25) {
+                        bmiResult = "( <font color='green'>Normal</font> )"
+                    }
+                    else if (bmi >= 25 && bmi < 29.9) {
+                        bmiResult = "( <font color='orange'>Overweight</font> )";
+                    } else {
+                        bmiResult = "( <font color='red'>You are obese</font> )";
+                    }
+                } else if (Age >= 5 && Age < 20) {
+                    if (bmi < 18) {
+                        bmiResult = "( <font color='#d6d91e'>Underweight</font> )";
+                    } else if (bmi >= 18 && bmi < 22) {
+                        bmiResult = "( <font color='green'>Normal</font> )";
+                    } else if (bmi >= 22 && bmi < 26) {
+                        bmiResult = "( <font color='orange'>Overweight</font> )";
+                    } else {
+                        bmiResult = "( <font color='red'>You are obese</font> )";
+                    }
+                } else {
+                    bmiResult = "Enter the age between 5 to 80"
+                }
+            }
+            else if (Gender === "female") {
+                if (Age >= 20 && Age <= 80) {
+                    if (bmi < 16.3) {
+                        bmiResult = "( <font color='#d6d91e'>Underweight</font> )";
+                    } else if (bmi >= 16.3 && bmi < 18.5) {
+                        bmiResult = "( <font color='green'>Normal</font> )";
+                    } else if (bmi >= 18.5 && bmi < 24.9) {
+                        bmiResult = "( <font color='orange'>Overweight</font> )";
+                    } else {
+                        bmiResult = "( <font color='red'>You are obese</font> )";
+                    }
+                } else if (Age >= 5 && Age < 20) {
+                    if (bmi < 17.5) {
+                        bmiResult = "( <font color='#d6d91e'>Underweight</font> )";
+
+                    } else if (bmi >= 17.5 && bmi < 18.9) {
+                        bmiResult = "( <font color='green'>Normal</font> )";
+                    } else if (bmi >= 18.9 && bmi < 22.7) {
+                        bmiResult = "( <font color='orange'>Overweight</font> )";
+                    } else {
+                        bmiResult = "( <font color='red'>You are obese</font> )";
+                    }
+                } else {
+                    bmiResult = "Enter the age between 5 to 80"
+                }
+            }
+            else {
+                bmiResult = "BMI calculation for this gender is not implemented.";
+            }
+            document.getElementById("result").innerHTML = `<b>BMI: ${bmi.toFixed(2)} Kg/M<sup>2</sup> ${bmiResult}</b>`;
+
+            
+    
+        }
+        function clearInput() {
+            document.getElementById('txtAge').value = '';
+            document.getElementById('txtHeight').value = '';
+            document.getElementById('txtWeight').value = '';
+            document.querySelector('input[name="gender"]:checked').checked = false;
+        }
+
+    </script>
+</head>
+
+<body class="container-fluid">
+    <div class="d-flex align-items-center justify-content-center" style="height: 100vh">
+        <div class="border border-dark border-3 w-50 mt-3 mb-2 ">
+
+            <h2 class="p-2 text-center">BMI Calculator</h2>
+            <div class="border-top border-dark d-flex justify-center align-center bg-light p-2">
+                <div class="d-flex flex-column gap-4">
+                    <div>
+                        <label>Age</label>
+                        <input type="text" id="txtAge" required placeholder="5 to 80">
+                    </div>
+                    <div>
+                        <label>Gender</label><br>
+                        <input type="radio" name="gender" value="male" checked>Male
+                        <input type="radio" name="gender" value="female">Female
+                    </div>
+                    <div>
+                        <label>Height</label>
+                        <input type="text" id="txtHeight" placeholder="Height in cm" required>
+                    </div>
+                    <div>
+                        <label>Weight</label>
+                        <input type="text" id="txtWeight" placeholder="Weight in kgs" required>
+                    </div>
+
+                    <div class="mt-3">
+                        <button onclick="calculateClick()" class="btn btn-success">Calculate</button>
+                        <button onclick="clearInput()" class="btn btn-danger">Clear</button>
+                    </div>
+                </div>
+
+                <div class="ms-4 mt-2 w-100">
+                    <p class="bg-success p-2 text-white ">Result</p>
+                    <p id="result"></p>
+                    <dl>
+                        <dt>For Men</dt>
+                        <dd>Healthy BMI range: 18.5 kg/m<sup>2</sup> - 25 kg/m<sup>2</sup></dd>
+                        <dt>For Women</dt>
+                        <dd>Healthy BMI range: 16.3 kg/m<sup>2</sup> - 18.5 kg/m<sup>2</sup></dd>
+                        <dt>For Boys</dt>
+                        <dd>Healthy BMI range: 18 kg/m<sup>2</sup> - 22 kg/m<sup>2</sup></dd>
+                        <dt>For Girls</dt>
+                        <dd>Healthy BMI range: 17.5 kg/m<sup>2</sup> - 18.9 kg/m<sup>2</sup></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
