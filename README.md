@@ -4,7 +4,7 @@
 This BMI Calculator is a simple tool designed to help users calculate their Body Mass Index quickly and easily. BMI is a numerical value of a person's weight in relation to their height, and it is commonly used as an indicator of overall health and fitness.
 
 ## Features
-1. Calculate BMI: Enter your weight (in kilograms or pounds) and height (in meters or inches), and the calculator will instantly compute your BMI.
+1. Calculate BMI: Enter your weight (in kilograms) and height (in centimeters), and the calculator will instantly compute your BMI.
 2. Interpretation: The calculator provides an interpretation of your BMI, categorizing it into different ranges such as Underweight, Normal, Overweight, and Obese.
 
 
